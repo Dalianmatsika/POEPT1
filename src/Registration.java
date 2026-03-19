@@ -1,9 +1,8 @@
-import java.util.Scanner;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
-public class Main {
-    // Data storage for the registered user
+public class Registration{
+    // These would typically be set during a registration process
     private String registeredUsername;
     private String registeredPassword;
     private String firstName;
@@ -27,13 +26,14 @@ public class Main {
             if (Character.isDigit(c)) hasDigit = true;
             if (!Character.isLetterOrDigit(c)) hasSpecial = true;
         }
+
         return hasUpper && hasDigit && hasSpecial;
     }
 
     // 3. Check Cell Phone Number (Regex)
+    // Criteria: Starts with international code (+27) and total length <= 10
     public boolean checkCellPhoneNumber(String cellNumber) {
-        // Starts with +27 followed by 7 digits (Total 10 characters)
-        String regex = "^\\+27[0-9]{7}$";
+        String regex = "^\\+27[0-9]{7}$"; // Starts with +27 followed by 7 digits = 10 chars
         Pattern pattern = Pattern.compile(regex);
         Matcher matcher = pattern.matcher(cellNumber);
         return matcher.matches();
@@ -44,14 +44,16 @@ public class Main {
         if (!checkUserName(username)) {
             return "Username is not correctly formatted; please ensure that your username contains an underscore and is no more than five characters in length.";
         }
+
         if (!checkPasswordComplexity(password)) {
             return "Password is not correctly formatted; please ensure that the password contains at least eight characters, a capital letter, a number, and a special character.";
         }
+
         if (!checkCellPhoneNumber(cell)) {
             return "Cell number is incorrectly formatted or does not contain an international code; please correct the number and try again.";
         }
 
-        // Store data if all checks pass
+        // Success - Store data
         this.registeredUsername = username;
         this.registeredPassword = password;
         this.firstName = fName;
@@ -72,41 +74,5 @@ public class Main {
         } else {
             return "Username or password incorrect, please try again.";
         }
-    }
-
-    // --- ENTRY POINT: RUNNABLE MAIN METHOD ---
-    public static void main(String[] args) {
-        Main app = new Main();
-        Scanner sc = new Scanner(System.in);
-
-        System.out.println("--- USER REGISTRATION ---");
-        System.out.print("Enter First Name: ");
-        String fName = sc.nextLine();
-        System.out.print("Enter Last Name: ");
-        String lName = sc.nextLine();
-        System.out.print("Enter Username (max 5 chars, must have _): ");
-        String user = sc.nextLine();
-        System.out.print("Enter Password (8+ chars, Upper, Number, Special): ");
-        String pass = sc.nextLine();
-        System.out.print("Enter Cell (+27xxxxxxx): ");
-        String cell = sc.nextLine();
-
-        // Register and show message
-        String regStatus = app.registerUser(user, pass, cell, fName, lName);
-        System.out.println("\n" + regStatus);
-
-        // Only proceed to login if registration was successful
-        if (regStatus.contains("successfully captured")) {
-            System.out.println("\n--- USER LOGIN ---");
-            System.out.print("Enter Username: ");
-            String logUser = sc.nextLine();
-            System.out.print("Enter Password: ");
-            String logPass = sc.nextLine();
-
-            boolean isSuccess = app.loginUser(logUser, logPass);
-            System.out.println(app.returnLoginStatus(isSuccess));
-        }
-
-        sc.close();
     }
 }
