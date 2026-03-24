@@ -17,7 +17,7 @@ public class RegistrationLogin {
     // 2. Check Password Complexity
     public boolean checkPasswordComplexity(String password) {
         boolean hasUpper = false;
-        boolean hasDigit = false;
+        boolean hasDigit = false;gbdghh
         boolean hasSpecial = false;
 
         if (password.length() < 8) return false;
