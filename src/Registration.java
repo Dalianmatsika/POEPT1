@@ -73,7 +73,7 @@ public class Registration {
         System.out.print("Enter Password (8+ chars, Upper, Number, Special): ");
         String pass = scanner.nextLine();
 
-        System.out.print("Enter Cell (+27xxxxxxxxx): ");
+        System.out.print("Enter Cell (+27123456789): ");
         String cell = scanner.nextLine();
 
         String regStatus = login.registerUser(user, pass, cell);
