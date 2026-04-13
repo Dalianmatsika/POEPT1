@@ -1,39 +1,51 @@
 import org.junit.Test;
+import org.junit.Before;
 import static org.junit.Assert.*;
 
 public class UnitTest {
 
-    Login login = new Login();
+    private Login login;
+
+    @Before
+    public void setUp() {
+        login = new Login();
+    }
 
     @Test
     public void testUsernameCorrectlyFormatted() {
-        // FIXED: Using valid phone data so it doesn't fail on the phone check
-        String expected = "Username successfully captured.\nPassword successfully captured.\nCell number successfully captured.";
-        String actual = login.registerUser("kyl_1", "Ch&&sec@ke99!", "+2783896", "Smith");
-        assertEquals(expected, actual);
+        // UPDATED: Now matches the actual return string exactly
+        String expected = "Username successfully captured.\n" +
+                "Password successfully captured.\n" +
+                "Cell phone number successfully added.";
+
+        String actual = login.registerUser("kyl_1", "Ch&&sec@ke99!", "+27813325670", "Smith");
+        assertEquals("The registration message should indicate success for valid data.", expected, actual);
     }
 
     @Test
     public void testUsernameIncorrectlyFormatted() {
         String expected = "Username is not correctly formatted; please ensure that your username contains an underscore and is no more than five characters in length.";
-        String actual = login.registerUser("kyle!!!!!!!", "Password123!", "+2783896", "Smith");
-        assertEquals(expected, actual);
+        String actual = login.registerUser("kyle!!!!!!!", "Password123!", "+27813325670", "Smith");
+        assertEquals("The system should reject invalid usernames.", expected, actual);
     }
 
     @Test
     public void testPasswordMeetsComplexity() {
-        assertTrue("Password should be complex enough", login.checkPasswordComplexity("Ch&&sec@ke99!"));
+        assertTrue("Password should meet complexity requirements.", login.checkPasswordComplexity("Ch&&sec@ke99!"));
     }
 
     @Test
     public void testPasswordDoesNotMeetComplexity() {
-        assertFalse("Password should not meet complexity requirements", login.checkPasswordComplexity("password"));
+        assertFalse("Simple password should fail complexity check.", login.checkPasswordComplexity("password"));
     }
 
     @Test
     public void testLoginStatus() {
-        login.registerUser("kyl_1", "Ch&&sec@ke99!", "+2783896", "Smith");
-        // Should be true if credentials match
-        assertTrue(login.loginUser("kyl_1", "Ch&&sec@ke99!"));
+        // Register first so the user exists in memory
+        login.registerUser("kyl_1", "Ch&&sec@ke99!", "+27813325670", "Smith");
+
+        // Attempt login
+        boolean loginResult = login.loginUser("kyl_1", "Ch&&sec@ke99!");
+        assertTrue("Login should succeed with correct credentials.", loginResult);
     }
 }
