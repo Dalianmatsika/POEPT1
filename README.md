@@ -49,7 +49,7 @@ The project is built using a three-tier structure within the IntelliJ environmen
 I have recorded a comprehensive video walkthrough of this project, demonstrating the registration process, the validation logic in action, and the successful execution of all Unit Tests.
 
 **Watch the demonstration here:**
-[Insert Your YouTube Link Here]
+[https://youtu.be/HKKzuWHZvcM?si=sYBBVCfAlMW9c6vs]
 
 ---
 
