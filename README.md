@@ -28,13 +28,13 @@ The project is built using a three-tier structure within the IntelliJ environmen
 
 ## 3. Key Functional Features
 
-| Feature | Implementation Detail |
-| :--- | :--- |
-| **Username Validation** | Enforces a max of 5 characters and the inclusion of an underscore (`_`). |
-| **Security Standards** | Enforces "Strong Password" rules (8+ chars, Uppercase, Numbers, Special Chars) via Regex. |
-| **Internationalization** | Uses Regex (`^\\+27...`) to validate South African cell phone formats. |
-| **Error Handling** | Returns specific, user-friendly error messages that match requirements exactly. |
-| **Authentication** | Compares real-time login attempts against previously "captured" registration data. |
+| Feature                  | Implementation Detail                                                                     |
+|:-------------------------|:------------------------------------------------------------------------------------------|
+| **Username Validation**  | Enforces a max of 5 characters and the inclusion of an underscore (`_`).                  |
+| **Security Standards**   | Enforces "Strong Password" rules (8+ chars, Uppercase, Numbers, Special Chars) via Regex. |
+| **Internationalization** | Uses Regex (`^\\+27...`) to validate South African cell phone formats.                    |
+| **Error Handling**       | Returns specific, user-friendly error messages that match requirements exactly.           |
+| **Authentication**       | Compares real-time login attempts against previously "captured" registration data.        |
 
 ---
 
