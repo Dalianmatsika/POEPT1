@@ -1,7 +1,3 @@
-Here is the final version of your **README.md** file, formatted correctly with Markdown headings (`##`) so it looks professional on GitHub or in any code editor.
-
----
-
 # Project Part1: Registration and Login feature
 
 ---
