@@ -1,4 +1,10 @@
+import org.junit.Test;
+
 import java.util.Scanner;
+
+import static org.junit.Assert.*;
+import static org.junit.Assert.assertFalse;
+import static org.junit.Assert.assertTrue;
 
 class Login {
 
@@ -26,7 +32,7 @@ class Login {
     }
 
     // 4. Register user
-    public String registerUser(String username, String password, String phone) {
+    public String registerUser(String username, String password, String phone, String smith) {
         if (!checkUserName(username)) {
             return "Username is not correctly formatted; please ensure that your username contains an underscore and is no more than five characters in length.";
         }
@@ -76,7 +82,7 @@ public class Registration {
         System.out.print("Enter Cell (+27123456789): ");
         String cell = scanner.nextLine();
 
-        String regStatus = login.registerUser(user, pass, cell);
+        String regStatus = login.registerUser(user, pass, cell, "Smith");
         System.out.println("\n" + regStatus);
 
         if (regStatus.contains("successfully added")) {
@@ -95,3 +101,49 @@ public class Registration {
         scanner.close();
     }
 }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
