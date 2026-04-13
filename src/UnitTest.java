@@ -11,13 +11,14 @@ public class UnitTest {
         login = new Login();
     }
 
+    // ==========================================
+    // EXISTING PART 1 TESTS (UNTOUCHED)
+    // ==========================================
     @Test
     public void testUsernameCorrectlyFormatted() {
-        // UPDATED: Now matches the actual return string exactly
         String expected = "Username successfully captured.\n" +
                 "Password successfully captured.\n" +
                 "Cell phone number successfully added.";
-
         String actual = login.registerUser("kyl_1", "Ch&&sec@ke99!", "+27813325670", "Smith");
         assertEquals("The registration message should indicate success for valid data.", expected, actual);
     }
@@ -41,11 +42,69 @@ public class UnitTest {
 
     @Test
     public void testLoginStatus() {
-        // Register first so the user exists in memory
         login.registerUser("kyl_1", "Ch&&sec@ke99!", "+27813325670", "Smith");
-
-        // Attempt login
         boolean loginResult = login.loginUser("kyl_1", "Ch&&sec@ke99!");
         assertTrue("Login should succeed with correct credentials.", loginResult);
     }
+
+    // ==========================================
+    // PART 2 Unit test
+    // ==========================================
+    @Test
+    public void testMessageLengthSuccess() {
+        Message msg = new Message("+27718693002", "Hi Mike, can you join us for dinner tonight?");
+        assertEquals("Message ready to send.", msg.checkMessageLength());
+    }
+
+    @Test
+    public void testMessageLengthFailure() {
+        StringBuilder longSb = new StringBuilder();
+        for (int i = 0; i < 260; i++) { longSb.append("A"); }
+        Message msg = new Message("+27718693002", longSb.toString());
+        assertEquals("Message exceeds 250 characters by 10; please reduce the size.", msg.checkMessageLength());
+    }
+
+    @Test
+    public void testRecipientNumberFormattingSuccess() {
+        Message msg = new Message("+27718693002", "Valid message contents.");
+        assertEquals("Cell phone number successfully captured.", msg.checkRecipientCell());
+    }
+
+    @Test
+    public void testMessageHashGeneration() {
+        Message msg = new Message("+27718693002", "Hi Mike, can you join us for dinner tonight?");
+        assertEquals("00:0:HITONIGHT", msg.getMessageHash());
+    }
 }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
