@@ -58,7 +58,7 @@ The system successfully transitions from a **Registration Phase** to a **Login P
 
 ---
 
-7. References
+## 7. References
    Farrell, J. (2023). Java Programming. 10th ed. Boston: Cengage Learning.
 
 (Primary textbook reference for general Java logic, class structures, and loops.)
