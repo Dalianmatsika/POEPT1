@@ -3,13 +3,13 @@ class Login {
     private String storedUsername;
     private String storedPassword;
 
-    // 1. Username check: must contain underscore (_) and be <= 5 characters
+    // Username check: must contain underscore (_) and be less than or equal to 5 characters
     public boolean checkUserName(String username) {
         // Added null check to prevent crashes
         return username != null && username.contains("_") && username.length() <= 5;
     }
 
-    // 2. Password complexity check
+    // Password Strength Check
     public boolean checkPasswordComplexity(String password) {
         return password != null &&
                 password.length() >= 8 &&
@@ -18,32 +18,40 @@ class Login {
                 password.matches(".*[^a-zA-Z0-9].*");
     }
 
-    // 3. Cell phone check
+    // Checking the cellphone number
     public boolean checkCellPhoneNumber(String phone) {
         return phone != null && phone.matches("^\\+27\\d{1,10}$");
     }
 
-    // 4. Register user
-    public String registerUser(String username, String password, String phone, String smith) {
+    // User Register section
+    public String registerUser(String username, String password, String phone, String lastName) {
         if (!checkUserName(username)) {
             return "Username is not correctly formatted; please ensure that your username contains an underscore and is no more than five characters in length.";
         }
+
         if (!checkPasswordComplexity(password)) {
             return "Password is not correctly formatted; please ensure that the password contains at least eight characters, a capital letter, a number, and a special character.";
         }
+
         if (!checkCellPhoneNumber(phone)) {
             return "Cell phone number incorrectly formatted or does not contain international code.";
         }
 
         this.storedUsername = username;
         this.storedPassword = password;
-        return "Username successfully captured.\nPassword successfully captured.\nCell phone number successfully added.";
+
+        return "Username successfully captured.\n" +
+                "Password successfully captured.\n" +
+                "Cell phone number successfully added.";
     }
 
+    // 5. Login check
     public boolean loginUser(String username, String password) {
-        return username.equals(storedUsername) && password.equals(storedPassword);
+        return username != null && username.equals(storedUsername) &&
+                password != null && password.equals(storedPassword);
     }
 
+    // 6. Return Login Status
     public String returnLoginStatus(boolean success, String firstName, String lastName) {
         if (success) {
             return "Welcome " + firstName + ", " + lastName + " it is great to see you again.";
@@ -52,3 +60,78 @@ class Login {
         }
     }
 }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

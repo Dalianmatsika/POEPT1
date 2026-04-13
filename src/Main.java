@@ -13,32 +13,51 @@ public class Main {
         System.out.println("Enter Last Name: ");
         String lName = scanner.nextLine();
 
-        System.out.println("Enter Username (max 5 chars, must have _): ");
+        System.out.println("Enter Username (Must include “_” and be 5 characters long.): ");
         String user = scanner.nextLine();
 
-        System.out.println("Enter Password (8+ chars, Upper, Number, Special): ");
+        System.out.println("Enter Password (Min 8 chars, with uppercase, number, and special character.): ");
         String pass = scanner.nextLine();
 
-        System.out.println("Enter Cell (+27123456789): ");
+        System.out.println("Enter Cell (Include country code (e.g., +27), then up to 10 digits): ");
         String cell = scanner.nextLine();
 
         String regStatus = login.registerUser(user, pass, cell, "Smith");
         System.out.println("\n" + regStatus);
 
         if (regStatus.contains("successfully added")) {
-            System.out.println("\n--- Login ---");
-            System.out.print("Enter Username: ");
-            String loginUser = scanner.nextLine();
+            boolean isSuccess = false;
 
-            System.out.print("Enter Password: ");
-            String loginPass = scanner.nextLine();
+            // Loop until the user logs in successfully
+            while (!isSuccess) {
+                System.out.println("\n--- Login ---");
+                System.out.print("Enter Username: ");
+                String loginUser = scanner.nextLine();
 
-            // FIXED: Added 'boolean' type declaration here
-            boolean isSuccess = login.loginUser(loginUser, loginPass);
+                System.out.print("Enter Password: ");
+                String loginPass = scanner.nextLine();
 
-            System.out.println(login.returnLoginStatus(isSuccess, fName, lName));
+                isSuccess = login.loginUser(loginUser, loginPass);
+
+                if (isSuccess) {
+                    System.out.println(login.returnLoginStatus(isSuccess, fName, lName));
+                } else {
+                    // Specific error feedback
+                    System.out.println("\n[!] Login Failed.");
+
+                    // Logic to tell the user WHERE they made an error
+                    // This assumes your Login class has access to the stored credentials
+                    if (!loginUser.equals(user)) {
+                        System.out.println("-> The username you entered does not match our records.");
+                    } else if (!loginPass.equals(pass)) {
+                        System.out.println("-> The password you entered is incorrect.");
+                    }
+
+                    System.out.println("Please try again.");
+                }
+            }
         }
-        scanner.close();
+
     }
 }
 
