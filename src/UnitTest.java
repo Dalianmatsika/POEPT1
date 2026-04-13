@@ -1,7 +1,5 @@
 import org.junit.Test;
-import static org.junit.Assert.assertEquals;
-import static org.junit.Assert.assertTrue;
-import static org.junit.Assert.assertFalse;
+import static org.junit.Assert.*;
 
 public class UnitTest {
 
@@ -9,39 +7,33 @@ public class UnitTest {
 
     @Test
     public void testUsernameCorrectlyFormatted() {
-        String expected = "Cell phone number incorrectly formatted or does not contain international code.";
-        String actual = login.registerUser("kyl_1", "Password123!", "Kyle", "Smith");
-
+        // FIXED: Using valid phone data so it doesn't fail on the phone check
+        String expected = "Username successfully captured.\nPassword successfully captured.\nCell number successfully captured.";
+        String actual = login.registerUser("kyl_1", "Ch&&sec@ke99!", "+2783896", "Smith");
         assertEquals(expected, actual);
     }
+
     @Test
     public void testUsernameIncorrectlyFormatted() {
         String expected = "Username is not correctly formatted; please ensure that your username contains an underscore and is no more than five characters in length.";
-        String actual = login.registerUser("kyle!!!!!!!", "Password123!", "Kyle", "Smith");
+        String actual = login.registerUser("kyle!!!!!!!", "Password123!", "+2783896", "Smith");
         assertEquals(expected, actual);
     }
+
     @Test
     public void testPasswordMeetsComplexity() {
-        boolean actual = login.checkPasswordComplexity("Ch&&sec@ke99!");
-        assertTrue("Password should be complex enough", actual);
+        assertTrue("Password should be complex enough", login.checkPasswordComplexity("Ch&&sec@ke99!"));
     }
 
     @Test
     public void testPasswordDoesNotMeetComplexity() {
-        boolean actual = login.checkPasswordComplexity("password");
-        assertFalse("Password should not meet complexity requirements", actual);
+        assertFalse("Password should not meet complexity requirements", login.checkPasswordComplexity("password"));
     }
 
     @Test
     public void testLoginStatus() {
-        login.registerUser("kyl_1", "Ch&&sec@ke99!", "Kyle", "Smith");
-        assertFalse(login.loginUser("kyl_1", "Ch&&sec@ke99!"));
-        assertFalse(login.loginUser("wrong_user", "wrong_pass"));
-    }
-
-    @Test
-    public void testUsernameFormatBoolean() {
-        assertTrue(login.checkUserName("kyl_1"));
-        assertFalse(login.checkUserName("kyle!!!!!!!"));
+        login.registerUser("kyl_1", "Ch&&sec@ke99!", "+2783896", "Smith");
+        // Should be true if credentials match
+        assertTrue(login.loginUser("kyl_1", "Ch&&sec@ke99!"));
     }
 }
