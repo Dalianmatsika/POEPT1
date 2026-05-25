@@ -5,18 +5,15 @@ import java.util.Random;
 import java.util.Scanner;
 
 public class Message {
-    // Static counters to track application states
     private static int totalMessagesSent = 0;
     private static int totalMessagesStored = 0;
     private static final StringBuilder sentMessagesLog = new StringBuilder();
 
-    // Instance fields
     private final String messageId;
     private final String recipientNumber;
     private final String messageText;
     private final String messageHash;
 
-    // Constructor
     public Message(String recipientNumber, String messageText) {
         this.recipientNumber = recipientNumber;
         this.messageText = messageText;
@@ -24,7 +21,7 @@ public class Message {
         this.messageHash = createMessageHash();
     }
 
-    // Helper to generate a random 10-digit number as a string ID
+    // will generate a random 10-digit number as a string ID
     private String generateMessageId() {
         Random rand = new Random();
         StringBuilder sb = new StringBuilder();
@@ -34,12 +31,10 @@ public class Message {
         return sb.toString();
     }
 
-    // Boolean: checkMessageID()
     public boolean checkMessageID() {
         return this.messageId != null && this.messageId.length() <= 10;
     }
 
-    // String: checkRecipientCell() - checks formatting and length
     public String checkRecipientCell() {
         if (recipientNumber != null && recipientNumber.startsWith("+") && recipientNumber.length() <= 12) {
             return "Cell phone number successfully captured.";
@@ -47,7 +42,7 @@ public class Message {
         return "Cell phone number is incorrectly formatted or does not contain an international code. Please correct the number and try again.";
     }
 
-    // Method to validate message text length explicitly matching assignment constraints
+    // This is to make sure that the message text length matches what's required  assignment constraints
     public String checkMessageLength() {
         if (messageText == null || messageText.length() <= 250) {
             return "Message ready to send.";
@@ -57,7 +52,6 @@ public class Message {
         }
     }
 
-    // String: createMessageHash()
     public String createMessageHash() {
         String cleanText = "";
         if (messageText != null) {
@@ -69,7 +63,6 @@ public class Message {
         return "00:0:" + cleanText;
     }
 
-    // String: SentMessage(int choice)
     public String SentMessage(int choice) {
         switch (choice) {
             case 1:
@@ -89,7 +82,6 @@ public class Message {
         }
     }
 
-    // String: printMessages()
     public static String printMessages() {
         if (sentMessagesLog.isEmpty()) {
             return "No messages sent yet.";
@@ -97,12 +89,12 @@ public class Message {
         return sentMessagesLog.toString();
     }
 
-    // Int: returnTotalMessagess()
+    // returnTotalMessagess()
     public static int returnTotalMessagess() {
         return totalMessagesSent;
     }
 
-    // Updated storeMessage() method saving to valid JSON array format
+    // Updated storeMessage() method will save to valid JSON array format
     public void storeMessage() {
         File fileObj = new File("stored_messages.json");
         StringBuilder fileContent = new StringBuilder();
@@ -118,10 +110,8 @@ public class Message {
             }
         }
 
-        // 2. Prepare the new single message block
         String finalJsonOutput = getString(fileContent);
 
-        // 4. Overwrite file completely with the correctly bound array string
         try (FileWriter file = new FileWriter(fileObj, false)) {
             file.write(finalJsonOutput);
         } catch (IOException e) {
@@ -141,22 +131,20 @@ public class Message {
         String finalJsonOutput;
         String trimmedExisting = fileContent.toString().trim();
 
-        // 3. Splice the data inside an array wrapper safely
         if (trimmedExisting.isEmpty() || trimmedExisting.equals("[]")) {
-            // First item going into the file
+
             finalJsonOutput = "[\n" + newJsonBlock + "\n]";
         } else {
-            // Remove the previous outer closing array bracket ']' to merge strings
+
             if (trimmedExisting.endsWith("]")) {
                 trimmedExisting = trimmedExisting.substring(0, trimmedExisting.length() - 1).trim();
             }
-            // Combine with a comma separator and seal the array bracket back down
+
             finalJsonOutput = trimmedExisting + ",\n" + newJsonBlock + "\n]";
         }
         return finalJsonOutput;
     }
 
-    // Getters for testing assertions
     public String getMessageId() { return messageId; }
     public String getMessageHash() { return messageHash; }
 }
