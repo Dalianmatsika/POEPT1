@@ -4,5 +4,29 @@
     "recipientNumber": "+276654254423",
     "messageHash": "00:0:XHGFS",
     "message": "xhgfs"
+  },
+  {
+    "messageId": "7727309893",
+    "recipientNumber": "+27813325679",
+    "messageHash": "00:0:DHDD",
+    "message": "dhdd"
+  },
+  {
+    "messageId": "2936270194",
+    "recipientNumber": "+27813325679",
+    "messageHash": "00:0:GCGCGCG",
+    "message": "gcgcgcg"
+  },
+  {
+    "messageId": "5846627821",
+    "recipientNumber": "+27813325679",
+    "messageHash": "00:0:HHHDGDGG",
+    "message": "hhhdgdggdd"
+  },
+  {
+    "messageId": "6474771318",
+    "recipientNumber": "+27813325679",
+    "messageHash": "00:0:FFFDFDDD",
+    "message": "fffdfddd"
   }
 ]
