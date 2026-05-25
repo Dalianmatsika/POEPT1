@@ -67,7 +67,8 @@ The following features and critical fixes were added to expand on the original r
 A comprehensive video walkthrough has been recorded to show the application working from start to finish. This includes the registration and login phase, batch message entry, input error handling, and a successful run of the automated unit tests.
 
 **Watch the demonstration here:**
-[https://youtu.be/HKKzuWHZvcM](https://youtu.be/HKKzuWHZvcM) *(Note: Please ensure this video link remains active for grading purposes).*
+[https://youtu.be/HKKzuWHZvcM](https://youtu.be/HKKzuWHZvcM)
+Part 2 video https://youtu.be/VQE_41y0aE4?si=6g21vfnFNxWx3VYD
 
 ---
 
