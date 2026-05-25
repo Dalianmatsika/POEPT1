@@ -85,7 +85,6 @@ public class Main {
                 }
             }
 
-            // Fixed to track your double 'ss' method 'returnTotalMessagess()'
             System.out.println("\nTotal messages sent: " + Message.returnTotalMessagess());
             System.out.println("\n--- All Sent Messages ---");
             System.out.println(Message.printMessages());
