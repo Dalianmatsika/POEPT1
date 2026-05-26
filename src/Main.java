@@ -27,18 +27,25 @@ public class Main {
             boolean isSuccess = false;
 
             // Loop until the user logs in successfully
-            while (!isSuccess) {
+            if (regStatus.contains("successfully added")) {
+
                 System.out.println("\n--- Login ---");
-                System.out.print("Enter Username: ");
-                String loginUser = scanner.nextLine();
 
-                System.out.print("Enter Password: ");
-                String loginPass = scanner.nextLine();
+                boolean Success = false;
 
-                isSuccess = login.loginUser(loginUser, loginPass);
+                // Login
+                while (!Success) {
+                    System.out.print("Enter Username: ");
+                    String loginUser = scanner.nextLine();
 
-                if (isSuccess) {
-                    System.out.println(login.returnLoginStatus(isSuccess, fName, lName));
+                    System.out.print("Enter Password: ");
+                    String loginPass = scanner.nextLine();
+
+                    Success = login.loginUser(loginUser, loginPass);
+
+                    System.out.println(login.returnLoginStatus(Success, fName, lName));
+                }
+            }
 
                     // =============== Quickchat starts here ========================
 
@@ -123,5 +130,4 @@ public class Main {
                 }
             }
         }
-    }
-}
+
