@@ -64,10 +64,10 @@ The following features and critical fixes were added to expand on the original r
 ---
 
 ## 6. Video Demonstration
-A comprehensive video walkthrough has been recorded to show the application working from start to finish. This includes the registration and login phase, batch message entry, input error handling, and a successful run of the automated unit tests.
+A comprehensive video walkthrough has been recorded to show the application working from start to finish. This includes the registration and login phase, batch message entry, input error handling, and a successful run of the automated unit tests for all classes (Main, Login, and Message).
 
 **Watch the demonstration here:**
-[https://youtu.be/HKKzuWHZvcM](https://youtu.be/HKKzuWHZvcM) *(Note: Please ensure this video link remains active for grading purposes).*
+https://youtu.be/VQE_41y0aE4?si=01ImzTrse69jDP8G
 
 ---
 
