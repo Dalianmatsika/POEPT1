@@ -67,7 +67,7 @@ The following features and critical fixes were added to expand on the original r
 A comprehensive video walkthrough has been recorded to show the application working from start to finish. This includes the registration and login phase, batch message entry, input error handling, and a successful run of the automated unit tests for all classes (Main, Login, and Message).
 
 **Watch the demonstration here:**
-## POEPT1 [https://youtu.be/HKKzuWHZvcM]
+## POEPT1 https://youtu.be/HKKzuWHZvcM
 ## POEPT2 https://youtu.be/VQE_41y0aE4?si=01ImzTrse69jDP8G
 
 ---
