@@ -99,7 +99,7 @@ public class StoredMessages {
             }
         }
         return "Message hash not found.";
-
+    }
 
     // This will display a report that lists full details of all stored/processed messages
     public String generateFullReport() {
