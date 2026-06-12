@@ -70,7 +70,7 @@ A comprehensive video walkthrough has been recorded to show the application work
 ## POEPT1 https://youtu.be/HKKzuWHZvcM
 ## POEPT2 https://youtu.be/VQE_41y0aE4?si=01ImzTrse69jDP8G
 
----
+--- 
 
 ## 7. Final Outcome
 The system successfully transitions from a secure **Registration Phase** to a **Login Phase**, only granting entry if credentials match the stored profile perfectly. Upon success, it initializes the **QuickChat Messaging Engine**, allowing users to safely batch-process structured messages, generate validation reports, and track session metrics under a protected console environment.
