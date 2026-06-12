@@ -5,7 +5,6 @@ public class Main {
         Scanner scanner = new Scanner(System.in);
         Login login = new Login();
 
-        // FIX: Synchronized type name to singular 'StoredMessage' to match your class file
         StoredMessages manager = new StoredMessages(30);
 
         manager.addMessage("+27834557896", "Did you get the cake?", "HASH1", "Sent");
@@ -44,7 +43,7 @@ public class Main {
             System.out.println("\n=== Login ===");
             boolean success = false;
 
-            // Loop until the user logs in successfully
+            // code will Loop until the user logs in successfully
             while (!success) {
                 System.out.println("Enter Username:");
                 String loginUser = scanner.nextLine();
@@ -183,7 +182,7 @@ public class Main {
                 }
             }
 
-            // Summary metrics printed upon application quit
+
             System.out.println("\nTotal messages sent during this session: " + Message.returnTotalMessagess());
             System.out.println("\n--- Message Archive Summary ---");
             System.out.println(Message.printMessages());
