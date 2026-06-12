@@ -5,20 +5,29 @@ import static org.junit.jupiter.api.Assertions.*;
 public class UnitTest {
 
     private Login login;
+    private StoredMessages manager;
 
-    // Test Data variables matching assignment screens exactly
     private final String msg1Recipient = "+27718693002";
     private final String msg1Content = "Hi Mike, can you join us for dinner tonight?";
 
-    private final String msg2Recipient = "08575975889"; // Lacks '+' and is 11 digits
+    private final String msg2Recipient = "08575975889";
     private final String msg2Content = "Hi Keegan, did you receive the payment?";
 
     @BeforeEach
     public void setUp() {
         login = new Login();
+
+        manager = new StoredMessages(10);
+
+        manager.addMessage("+27834557896", "Did you get the cake?", "HASH1", "Sent");
+        manager.addMessage("+27838884567", "Where are you? You are late! I have asked you to be on time.", "HASH2", "Stored");
+        manager.addMessage("+27834484567", "Yohoooo, I am at your gate.", "HASH3", "Disregard");
+        manager.addMessage("0838884567", "It is dinner time !", "HASH4", "Sent");
     }
 
-    // ================ POE PART 1: LOGIN & REGISTRATION TESTS ========================
+    // ============================================================================
+    // POE PART 1: LOGIN & REGISTRATION TESTS
+    // ============================================================================
 
     @Test
     public void testUsernameCorrectlyFormatted() {
@@ -53,9 +62,10 @@ public class UnitTest {
         assertTrue(loginResult, "Login should succeed with correct credentials.");
     }
 
-    // ==================== POE PART 2: TEST =========================
+    // ============================================================================
+    // POE PART 2: MESSAGE VALIDATION TESTS
+    // ============================================================================
 
-    // --- Rule 1: Message Character Length Verification ---
     @Test
     public void testMessageLength_Success() {
         Message msg1 = new Message(msg1Recipient, msg1Content);
@@ -74,7 +84,6 @@ public class UnitTest {
         assertEquals(expected, actual, "Should return calculation variance error layout.");
     }
 
-    // Recipient Formatting Verification
     @Test
     public void testRecipientNumber_Success() {
         Message msg1 = new Message(msg1Recipient, msg1Content);
@@ -120,7 +129,6 @@ public class UnitTest {
         assertNotNull(msg1.getMessageId());
     }
 
-    // User Input Action Routes & Total Counter Tracking
     @Test
     public void testMessageSent_ActionResponses() {
         Message testMsg = new Message(msg1Recipient, msg1Content);
@@ -141,5 +149,44 @@ public class UnitTest {
         msg2.SentMessage(2);
 
         assertEquals(baseline + 1, Message.returnTotalMessagess(), "Total sent calculation count tracker mismatch.");
+    }
+
+    // ============================================================================
+    // FINAL POE: STORAGE & SEARCH TESTS
+    // ============================================================================
+
+    @Test
+    public void testSentMessagesArrayPopulation() {
+        String result = manager.generateFullReport();
+        assertTrue(result.contains("Did you get the cake?"));
+        assertTrue(result.contains("It is dinner time !"));
+    }
+
+    @Test
+    public void testDisplayLongestMessage() {
+        String expectedLongest = "Where are you? You are late! I have asked you to be on time.";
+        assertEquals(expectedLongest, manager.getLongestMessage());
+    }
+
+    @Test
+    public void testSearchByMessageID() {
+        String result = manager.searchByMessageID("0838884567");
+        assertTrue(result.contains("It is dinner time !"));
+    }
+
+    @Test
+    public void testSearchAllMessagesByRecipient() {
+        manager.addMessage("+27838884567", "Ok, I am leaving without you.", "HASH5", "Stored");
+
+        String expectedCombined = "Where are you? You are late! I have asked you to be on time. Ok, I am leaving without you.";
+        assertEquals(expectedCombined, manager.searchAllMessagesByRecipient("+27838884567"));
+    }
+
+    @Test
+    public void testDeleteMessageByHash() {
+        String expectedDeletionMessage = "Message: \"Where are you? You are late! I have asked you to be on time.\" successfully deleted.";
+        assertEquals(expectedDeletionMessage, manager.deleteMessageByHash("HASH2"));
+
+        assertEquals(3, manager.getSize());
     }
 }

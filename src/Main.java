@@ -5,10 +5,8 @@ public class Main {
         Scanner scanner = new Scanner(System.in);
         Login login = new Login();
 
-        // Allocate master storage manager for Part 3 data functions
         StoredMessages manager = new StoredMessages(30);
 
-        // AUTOMATIC SEEDING: Automatically populates the test data required by the brief
         manager.addMessage("+27834557896", "Did you get the cake?", "HASH1", "Sent");
         manager.addMessage("+27838884567", "Where are you? You are late! I have asked you to be on time.", "HASH2", "Stored");
         manager.addMessage("+27834484567", "Yohoooo, I am at your gate.", "HASH3", "Disregard");
@@ -18,7 +16,7 @@ public class Main {
         // ==========================================
         // PHASE 1: REGISTRATION
         // ==========================================
-        System.out.println("--- Registration ---");
+        System.out.println("=== Registration ===");
 
         System.out.println("Enter First Name:");
         String fName = scanner.nextLine();
@@ -42,7 +40,7 @@ public class Main {
         // PHASE 2: LOGIN & SYSTEM ACCESS
         // ==========================================
         if (regStatus.contains("successfully added")) {
-            System.out.println("\n--- Login ---");
+            System.out.println("\n=== Login ===");
             boolean success = false;
 
             // Loop until the user logs in successfully
@@ -68,11 +66,9 @@ public class Main {
             boolean running = true;
 
             while (running) {
-                System.out.println("\n=========================================");
-                System.out.println("          MAIN MENU INTERFACE            ");
-                System.out.println("=========================================");
+                System.out.println("\n==========================================================================================");
                 System.out.println("1) Send Messages");
-                System.out.println("2) Stored Messages Management (Part 3 POE)");
+                System.out.println("2) Stored Messages Management");
                 System.out.println("3) Quit Application");
                 System.out.println("Choose an option (1-3):");
 
@@ -84,7 +80,6 @@ public class Main {
                             System.out.println("You have reached your message limit.");
                             break;
                         }
-
                         messageCount++;
 
                         System.out.println("Enter recipient number:");
@@ -93,7 +88,7 @@ public class Main {
                         String messageBody = "";
                         Message tempMsg = null;
 
-                        // Validation loop using your Message logic
+                        // Checking loop using your Message logic
                         while (true) {
                             System.out.println("Please enter a message of less than 250 characters:");
                             messageBody = scanner.nextLine();
@@ -118,7 +113,6 @@ public class Main {
                         String executionStatus = tempMsg.SentMessage(sendChoice);
                         System.out.println(executionStatus);
 
-                        // Capture and add the newly composed message dynamically into Part 3 arrays
                         String statusFlag = "Sent";
                         if (sendChoice == 2) statusFlag = "Disregard";
                         if (sendChoice == 3) statusFlag = "Stored";
@@ -132,8 +126,7 @@ public class Main {
                         break;
 
                     case 2:
-                        // Linked sub-menu block satisfying Part 3, Section 2 requirements (a-f)
-                        System.out.println("\n--- SUB-MENU: STORED MESSAGES OPTION ---");
+                        System.out.println("\n=== STORED MESSAGES OPTION ===");
                         System.out.println("a. Display the sender and recipient of all stored messages.");
                         System.out.println("b. Display the longest stored message.");
                         System.out.println("c. Search for a message ID and display corresponding recipient and message.");
@@ -144,7 +137,7 @@ public class Main {
 
                         String subChoice = scanner.nextLine().trim().toLowerCase();
 
-                        System.out.println("\n--------------------------------------------------------------------------------");
+                        System.out.println("\n==========================================================================================");
                         switch (subChoice) {
                             case "a":
                                 System.out.println("[Displaying Senders and Recipients stored messages]:");
@@ -176,7 +169,7 @@ public class Main {
                             default:
                                 System.out.println("Error: Selection sub-character context was invalid.");
                         }
-                        System.out.println("--------------------------------------------------------------------------------");
+                        System.out.println("==========================================================================================");
                         break;
 
                     case 3:
