@@ -81,8 +81,8 @@ The application utilizes a clean, decoupled, four-tier class structure engineere
 
 Comprehensive video archives have been compiled showing the application operating seamlessly across all core phases. The presentations cover registration, runtime execution, data entry validation, search capabilities, hash-based row deletions, and a successful sweep of the automated unit test suite.
 
-* 🎬 **Phase 1 Walkthrough:** [POEPT1 Video Demonstration](https://youtu.be/HKKzuWHZvcM)
-* 🎬 **Phase 2 & 3 Integration Walkthrough:** [POEPT2 Video Demonstration](https://youtu.be/VQE_41y0aE4?si=01ImzTrse69jDP8G)
+* **Phase 1 Walkthrough:** [POEPT1 Video Demonstration](https://youtu.be/HKKzuWHZvcM)
+* **Phase 2 & 3 Integration Walkthrough:** [POEPT2 Video Demonstration](https://youtu.be/VQE_41y0aE4?si=01ImzTrse69jDP8G)
 
 --- 
 
