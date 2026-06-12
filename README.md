@@ -54,12 +54,12 @@ The application utilizes a clean, decoupled, four-tier class structure engineere
 
 ## 4. Feature Progression Across Phases
 
-### 🔹 Added in Part 2 (Messaging Core)
+### Added in Part 2 (Messaging Core)
 * **Interactive Main Menu:** Built a persistent workflow directing users between staging messages, viewing archives, and closing the app.
 * **Message Object Integration:** Created the object blueprint to construct ID tokens, hash strings, and run local text size constraints.
 * **Static Session Tracking:** Tied an atomic accumulator counter to the class definition to keep a session metric record of sent items.
 
-### 🔹 Added in Part 3 & Final POE (Storage & Management Layer)
+### Added in Part 3 & Final POE (Storage & Management Layer)
 * **Parallel Array Database (`StoredMessage`):** Replaced static mock placeholders with a live database management class that handles parallel tracking arrays bound by a customizable storage cap.
 * **Targeted Recipient and ID Queries:** Developed linear search loops. Searching an ID extracts a precise recipient/text breakdown; searching a phone number collects all associated text records into a single combined layout string.
 * **Longest Record Assessment:** Added an evaluation sequence that iterates across the data cache rows to discover and return the single longest string block.
