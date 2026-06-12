@@ -1,4 +1,3 @@
-// FIX: Renamed the class block to singular to match your file name architecture completely
 public class StoredMessages {
     private final String[] messageID;
     private final String[] storedMessages;
@@ -27,7 +26,6 @@ public class StoredMessages {
         size++;
     }
 
-    // Displays the recipient of all messages explicitly flagged as 'Stored'
     public String getStoredRecipients() {
         StringBuilder sb = new StringBuilder();
         boolean found = false;
@@ -40,7 +38,6 @@ public class StoredMessages {
         return found ? sb.toString().trim() : "No stored messages found.";
     }
 
-    // Evaluates text lengths for the assignment dataset
     public String getLongestMessage() {
         if (size == 0) return "No messages available.";
 
@@ -54,7 +51,6 @@ public class StoredMessages {
         return longest;
     }
 
-    // Searches for a message ID string match and extracts layout structures
     public String searchByMessageID(String id) {
         for (int i = 0; i < size; i++) {
             if (messageID[i] != null && messageID[i].equals(id)) {
@@ -64,13 +60,12 @@ public class StoredMessages {
         return "Message ID not found.";
     }
 
-    // Collects multiple message text bodies matching a target filter
     public String searchAllMessagesByRecipient(String recipient) {
         StringBuilder sb = new StringBuilder();
         boolean found = false;
         for (int i = 0; i < size; i++) {
             if (messageID[i] != null && messageID[i].equals(recipient)) {
-                if (found) sb.append(" "); // Space separator specified by test requirements
+                if (found) sb.append(" ");
                 sb.append(storedMessages[i]);
                 found = true;
             }
@@ -78,13 +73,11 @@ public class StoredMessages {
         return found ? sb.toString().trim() : "No messages found for this recipient.";
     }
 
-    // Performs array structural shift operations to remove a row dynamically by hash
     public String deleteMessageByHash(String hash) {
         for (int i = 0; i < size; i++) {
             if (messageHash[i] != null && messageHash[i].equalsIgnoreCase(hash)) {
                 String targetMessage = storedMessages[i];
 
-                // Parallel structure shifting down by one space index position
                 for (int j = i; j < size - 1; j++) {
                     messageID[j] = messageID[j + 1];
                     storedMessages[j] = storedMessages[j + 1];
@@ -92,7 +85,6 @@ public class StoredMessages {
                     messageStatus[j] = messageStatus[j + 1];
                 }
 
-                // Clean old trailing duplication index boundary addresses
                 messageID[size - 1] = null;
                 storedMessages[size - 1] = null;
                 messageHash[size - 1] = null;
@@ -105,7 +97,6 @@ public class StoredMessages {
         return "Message hash not found.";
     }
 
-    // Generates a clean tabular system summary ledger report
     public String generateFullReport() {
         if (size == 0) return "The message system is empty.";
 
