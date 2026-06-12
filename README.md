@@ -1,81 +1,93 @@
-## Executive Report: QuickChat Application (Part 1 & Part 2 Integrated)
+# Executive Report: QuickChat Application
+### Full POE (Parts 1, 2 & 3)
 
 ---
 
 ## 1. Executive Summary
-This project is a secure, interactive Java application that handles user registration, authentication, and an automated batch-messaging system called QuickChat. The focus of this development was on strict **input validation**, **Object-Oriented Programming (OOP)** design, and **Test-Driven Development (TDD)**. By keeping the core business logic completely separate from the user interface, the application ensures data integrity, safety from crashes, and a smooth, robust user experience.
+This project outlines the development of a secure, robust, and interactive Java desktop application handling user identity management, validation, and an automated backend communications engine called **QuickChat**. Developed across three sequential phases, the application showcases strict **input validation**, **Object-Oriented Programming (OOP)** architectures, **advanced array-shifting data structures**, and **Test-Driven Development (TDD)**.
+
+By keeping core business validation and data manipulation entirely separated from the user interface console layer, the system guarantees high data integrity, robust protection against crash states, and smooth execution metrics.
 
 ---
 
 ## 2. Technical Architecture
-The application uses a clean, three-tier separated class structure built within the IntelliJ IDEA environment:
+The application utilizes a clean, decoupled, four-tier class structure engineered inside the IntelliJ IDEA environment to maximize the separation of concerns:
 
-### **Logic Engine (`Login.java`)**
-* Acts as the primary **"Decision Maker"** for identity management.
-* Handles complex validation using **Regular Expressions (Regex)** for speed, security standards, and accuracy.
-* Protects sensitive user details using **private instance variables** to enforce encapsulation.
-
-### **Messaging Engine (`Message.java`)**
-* Manages message creation, length checks, and recipient validation rules.
-* Keeps a global count of successfully sent messages across the entire application session using **static tracking**.
-
-### **User Interface (`Main.java`)**
-* Manages user interactions and menu flows in the console via `Scanner`.
-* Heavily updated in Part 2 to read choices strictly as Strings (`scanner.nextLine().trim()`), completely preventing infinite menu duplication bugs and crashes caused by unexpected user input.
-* Implements a persistent flow to guide the user dynamically based on authentication and batch-processing loops.
-
-### **Quality Assurance (`UnitTest.java`)**
-* Uses the **JUnit framework** to run automated unit tests.
-* Automates both success and failure scenarios using assertions, ensuring both the login logic and messaging system produce correct, predictable outputs.
+* **Identity Engine (`Login.java`)**
+    * Serves as the security gatekeeper for user profile creation and credential authorization.
+    * Utilizes **Regular Expressions (Regex)** for swift, standardized formatting evaluations.
+    * Leverages strict encapsulation rules via private variables to safeguard user profile components.
+* **Validation Engine (`Message.java`)**
+    * Manages immediate message creation boundaries, character length caps, and recipient phone constraints.
+    * Tracks global system statistics across execution sessions utilizing **static counters**.
+* **Data Storage & Management Engine (`StoredMessage.java`)**
+    * Introduced in the final phase to serve as an in-memory database using synchronized **parallel arrays** (`messageID`, `storedMessages`, `messageHash`, `messageStatus`).
+    * Houses core database algorithms for searching, filtering records, finding length variations, and performing dynamic row deletions via **index shifting elements**.
+* **User Interface (`Main.java`)**
+    * Orchestrates runtime execution menus and reads user inputs sequentially via a single `Scanner`.
+    * Employs string-parsing strategies (`Integer.parseInt(scanner.nextLine())`) to isolate inputs and completely protect the console from infinite menu loops or unexpected alphanumeric crash states.
+* **Quality Assurance (`UnitTest.java`)**
+    * Formulates a comprehensive test suite powered by the **JUnit framework**.
+    * Validates success/failure paths, data filtering lookups, string lengths, and structural array manipulation to ensure absolute predictability.
 
 ---
 
 ## 3. Key Functional Features
 
-| Feature                  | Scope  | Implementation Detail                                                                                     |
-|:-------------------------|:-------|:----------------------------------------------------------------------------------------------------------|
-| **Username Validation** | Part 1 | Enforces a maximum of 5 characters and requires the inclusion of an underscore (`_`).                      |
-| **Security Standards** | Part 1 | Enforces "Strong Password" rules (8+ chars, Uppercase, Numbers, Special Chars) using Regex.               |
-| **Internationalization** | Part 1 | Validates South African cell phone formats using a `^\+27` Regex pattern.                                 |
-| **Authentication Flow** | Part 1 | Compares real-time login entries against previously "captured" and saved registration data.               |
-| **Length Validation** | Part 2 | Checks if a message is under the 250-character limit and shows the exact character count overflow if it fails. |
-| **Recipient Verification**| Part 2 | Validates that batch recipient numbers meet the required phone format rules.                              |
-| **Report Generation** | Part 2 | Creates a complete message summary displaying a unique Message ID, Message Hash, and recipient data.      |
-| **Batch Processing** | Part 2 | Allows users to process multiple messages in a single run using a structured loop.                        |
-| **Console Safeguards** | Part 2 | Prevents endless console loops by reading inputs as strings and instantly consuming unexpected text blocks. |
+| Feature | Scope | Implementation Detail |
+| :--- | :---: | :--- |
+| **Username Validation** | Part 1 | Enforces a maximum of 5 characters and requires the inclusion of an underscore (`_`). |
+| **Security Standards** | Part 1 | Enforces strong password rules (8+ chars, uppercase, number, special character) via Regex. |
+| **Internationalization** | Part 1 | Validates cell numbers targeting South African international formatting rules via a `^\+27` pattern. |
+| **Authentication Flow** | Part 1 | Cross-checks real-time login prompts against securely held registration profile variables. |
+| **Length Validation** | Part 2 | Checks if text body is under 250 characters and dynamically calculates exact overflow values upon failure. |
+| **Recipient Verification**| Part 2 | Performs formatting evaluations on active batch recipient cell number entry lines. |
+| **Batch Processing** | Part 2 | Prompts user for a precise message count to run an execution sequence loop. |
+| **Console Safeguards** | Part 2/3 | Captures inputs entirely as strings to clear out junk terminal lines and prevent runtime freezes. |
+| **In-Memory Ledger Storage**| Part 3 | Populates parallel tracking arrays with distinct Message IDs, Body Text, Hashes, and Status flags. |
+| **Status State Tracking** | Part 3 | Flags records dynamically as `"Sent"`, `"Stored"`, or `"Disregard"` based on real-time user selections. |
+| **Algorithmic Search** | Part 3 | Performs linear lookups to locate record summaries by unique Message IDs or accumulate text strings by recipient phone numbers. |
+| **Dynamic Record Deletion**| Part 3 | Wipes records by hash key and utilizes an array shifting loop to collapse empty gaps and preserve data sorting order. |
+| **Tabular Report Auditing** | Part 3 | Uses explicit string formatting (`String.format()`) to produce structured, tabular data reports of the archive. |
 
 ---
 
-## 4. Updates and Changes Made in Part 2
-The following features and critical fixes were added to expand on the original registration system:
-* **Interactive Main Menu:** Added a persistent post-login menu that gives users three clear choices: 1) Send Messages, 2) Show recently sent messages (Coming Soon), and 3) Quit.
-* **Message Object Integration:** Created a dedicated `Message` class to handle recipient numbers, text data, unique ID generation, and character limits safely.
-* **Batch Processing Loop:** Added a prompt asking users how many messages they want to enter. The system loops through that exact number, letting the user format and check each message sequentially.
-* **Static Metric Tracking:** Implemented a static method (`Message.returnTotalMessagess()`) that keeps an accurate, continuous count of all successfully sent messages across the entire application session.
-* **Critical Input Fix (Endless Loop Protection):** Removed all direct calls to `scanner.nextInt()` for menu choices and replaced them with `scanner.nextLine().trim()`. If a user accidentally enters text or multi-line data into a numeric menu prompt, the program safely consumes the entire block at once, displays a single error message, and waits calmly for the correct input without looping indefinitely.
+## 4. Feature Progression Across Phases
+
+### Added in Part 2 (Messaging Core)
+* **Interactive Main Menu:** Built a persistent workflow directing users between staging messages, viewing archives, and closing the app.
+* **Message Object Integration:** Created the object blueprint to construct ID tokens, hash strings, and run local text size constraints.
+* **Static Session Tracking:** Tied an atomic accumulator counter to the class definition to keep a session metric record of sent items.
+
+### Added in Part 3 & Final POE (Storage & Management Layer)
+* **Parallel Array Database (`StoredMessage`):** Replaced static mock placeholders with a live database management class that handles parallel tracking arrays bound by a customizable storage cap.
+* **Targeted Recipient and ID Queries:** Developed linear search loops. Searching an ID extracts a precise recipient/text breakdown; searching a phone number collects all associated text records into a single combined layout string.
+* **Longest Record Assessment:** Added an evaluation sequence that iterates across the data cache rows to discover and return the single longest string block.
+* **Array-Shifting Deletion Engine:** Implemented a secure row removal mechanism. When a specific hash is targeted for deletion, the system finds the index, slides all subsequent data entries down by one slot to cover the gap, and cleans out the trailing index duplicates by setting them back to `null`.
+* **Tabular Audit Reporter:** Created a complete report summary engine that renders every element in the system within aligned, structured columns complete with clean borders and column headers.
 
 ---
 
 ## 5. Meeting the Rubric Criteria
-* **Code Complexity / Defensive Design:** Kept the code readable, maintainable, and low in complexity by using simple switch-case branches and Regex. The interface handles bad data or accidental text entries gracefully without crashing or throwing stack trace errors.
-* **Encapsulation:** All sensitive variables inside the `Login` and `Message` classes are kept private, meaning they can only be accessed or changed through secure constructors and getter methods.
-* **Testability / Documentation:** Every method is clearly named and commented to explain the logic. Because the core components return clean, predictable strings, the entire application can be thoroughly verified using automated JUnit tests.
+
+* **Code Complexity / Defensive Design:** Complex conditions are streamlined down into predictable switch-case pathways, clean validation rules, and explicit loop exits. Input fields swallow invalid tokens gracefully without exposing stack traces.
+* **Data Structuring & Encapsulation:** Array lengths, internal indices, and data states are fiercely encapsulated. Classes interact purely through well-defined public methods, protecting underlying arrays from direct, unauthorized manipulation.
+* **Data Manipulation & Sorting Preservation:** The deletion module handles manual index tracking and array compaction perfectly, ensuring that when data is removed, the remaining rows stay organized, tightly packed, and clear of broken pointer indexes.
+* **Testability / Automation:** The architecture isolates logic returns from printing calls. Every method returns distinct data layouts or status strings, allowing JUnit tests to rigorously verify array shifts, deletions, searches, and edge cases.
 
 ---
 
-## 6. Video Demonstration
-A comprehensive video walkthrough has been recorded to show the application working from start to finish. This includes the registration and login phase, batch message entry, input error handling, and a successful run of the automated unit tests for all classes (Main, Login, and Message).
+## 6. Video Demonstrations
 
-**Watch the demonstration here:**
-## POEPT1 https://youtu.be/HKKzuWHZvcM
-## POEPT2 https://youtu.be/VQE_41y0aE4?si=01ImzTrse69jDP8G
+Comprehensive video archives have been compiled showing the application operating seamlessly across all core phases. The presentations cover registration, runtime execution, data entry validation, search capabilities, hash-based row deletions, and a successful sweep of the automated unit test suite.
 
----
+* **Phase 1 Walkthrough:** [POEPT1 Video Demonstration](https://youtu.be/HKKzuWHZvcM)
+* **Phase 2 & 3 Integration Walkthrough:** [POEPT2 Video Demonstration](https://youtu.be/VQE_41y0aE4?si=01ImzTrse69jDP8G)
+
+--- 
 
 ## 7. Final Outcome
-The system successfully transitions from a secure **Registration Phase** to a **Login Phase**, only granting entry if credentials match the stored profile perfectly. Upon success, it initializes the **QuickChat Messaging Engine**, allowing users to safely batch-process structured messages, generate validation reports, and track session metrics under a protected console environment.
-
----
+The completed QuickChat Application successfully functions as an integrated software suite. It flows smoothly from a strict, validation-locked **Identity Verification Phase** directly into an advanced **QuickChat Management Engine**. Under this space, users are fully empowered to send messages, securely store communication logs within bounded parallel arrays, perform linear database searches, delete entries via data-shifting loops, and generate perfectly formatted tabular system audit reports.
 
 ## 8. References
 Badri Khanal. (2019). Random Number in java, Generate a 10 digit phone number using the random number. [Online Video]. Available at: https://youtu.be/ar5Rk9JtOCk [Accessed 20 May 2026].
