@@ -1,5 +1,5 @@
 # Executive Report: QuickChat Application
-### Full POE Integration (Parts 1, 2 & 3)
+### Full POE (Parts 1, 2 & 3)
 
 ---
 
