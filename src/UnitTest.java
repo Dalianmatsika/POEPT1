@@ -5,7 +5,7 @@ import static org.junit.jupiter.api.Assertions.*;
 public class UnitTest {
 
     private Login login;
-    private StoredMessage manager; // FIX: Changed type from StoredMessages to StoredMessage
+    private StoredMessages manager; // FIX: Changed type from StoredMessages to StoredMessage
 
     private final String msg1Recipient = "+27718693002";
     private final String msg1Content = "Hi Mike, can you join us for dinner tonight?";
@@ -18,7 +18,7 @@ public class UnitTest {
         login = new Login();
 
         // FIX: Changed constructor initialization call to singular StoredMessage
-        manager = new StoredMessage(10);
+        manager = new StoredMessages (10);
 
         manager.addMessage("+27834557896", "Did you get the cake?", "HASH1", "Sent");
         manager.addMessage("+27838884567", "Where are you? You are late! I have asked you to be on time.", "HASH2", "Stored");

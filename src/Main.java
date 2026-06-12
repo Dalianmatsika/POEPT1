@@ -6,7 +6,7 @@ public class Main {
         Login login = new Login();
 
         // FIX: Synchronized type name to singular 'StoredMessage' to match your class file
-        StoredMessage manager = new StoredMessage(30);
+        StoredMessages manager = new StoredMessages(30);
 
         manager.addMessage("+27834557896", "Did you get the cake?", "HASH1", "Sent");
         manager.addMessage("+27838884567", "Where are you? You are late! I have asked you to be on time.", "HASH2", "Stored");
