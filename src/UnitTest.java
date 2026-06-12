@@ -151,9 +151,9 @@ public class UnitTest {
         assertEquals(baseline + 1, Message.returnTotalMessagess(), "Total sent calculation count tracker mismatch.");
     }
 
-    // ============================================================================
+    // =============================================================================
     // FINAL POE: STORAGE & SEARCH TESTS
-    // ============================================================================
+    // =============================================================================
 
     @Test
     public void testSentMessagesArrayPopulation() {

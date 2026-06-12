@@ -107,7 +107,7 @@ public class StoredMessages {
 
         StringBuilder report = new StringBuilder();
         report.append(String.format("%-12s | %-15s | %-10s | %s\n", "HASH", "RECIPIENT/ID", "STATUS", "MESSAGE"));
-        report.append("--------------------------------------------------------------------------------\n");
+        report.append("---------------------------------------------------------------------------------\n");
         for (int i = 0; i < size; i++) {
             report.append(String.format("%-12s | %-15s | %-10s | %s\n",
                     messageHash[i], messageID[i], messageStatus[i], storedMessages[i]));

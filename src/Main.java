@@ -36,9 +36,9 @@ public class Main {
         String regStatus = login.registerUser(user, pass, cell, lName);
         System.out.println("\n" + regStatus);
 
-        // ==========================================
+        // ===========================================
         // PHASE 2: LOGIN & SYSTEM ACCESS
-        // ==========================================
+        // ===========================================
         if (regStatus.contains("successfully added")) {
             System.out.println("\n=== Login ===");
             boolean success = false;
