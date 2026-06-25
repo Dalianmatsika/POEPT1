@@ -1,4 +1,3 @@
-// FIX: Renamed the class block to singular to match your file name architecture completely
 public class StoredMessages {
     private final String[] messageID;
     private final String[] storedMessages;
@@ -27,7 +26,6 @@ public class StoredMessages {
         size++;
     }
 
-    // Displays the recipient of all messages explicitly flagged as 'Stored'
     public String getStoredRecipients() {
         StringBuilder sb = new StringBuilder();
         boolean found = false;
